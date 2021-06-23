@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3>Lista filmów</h3>
-    <SingleFilm/>
+    <h3 v-if="films">Znalezione filmy</h3>
+    <SingleFilm v-for="item in films" :key="item.id" :film="item"/>
   </div>
 </template>
 
@@ -9,8 +9,11 @@
 import SingleFilm from './SingleFilm';
 
 export default {
-name: "FilmsList.vue",
-  components: {SingleFilm}
+  name: "FilmsList.vue",
+  components: {SingleFilm},
+  props: {
+    films: Array
+  }
 }
 </script>
 

@@ -7,12 +7,9 @@
       </form>
     </div>
     <div class="mostPopulars films">
-      <h3>Znalezione</h3>
-      <p><strong>API link:</strong> {{API_SEARCH}}</p>
-
       <FilmsList :films="resultData"/>
-
     </div>
+
     <div class="finded films">
       <h3>Najpopularniejsze filmy</h3>
     </div>
@@ -36,7 +33,7 @@ export default {
       movieId: null,
       page: 1,
       language: 'pl-PL',
-      API_KEY: 'xxx'
+      API_KEY: '6867970f578bc54a2df62f33811ee300'
     }
   },
   computed: {
@@ -57,7 +54,7 @@ export default {
     searchQuery() {
       axios
           .get(this.API_SEARCH)
-          .then(result => this.resultData = result)
+          .then(result => this.resultData = result.data.results)
           .catch(err => console.log(err))
     }
   }
