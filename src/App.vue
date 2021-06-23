@@ -7,11 +7,7 @@
       </form>
     </div>
     <div class="mostPopulars films">
-      <FilmsList :films="resultData"/>
-    </div>
-
-    <div class="finded films">
-      <h3>Najpopularniejsze filmy</h3>
+      <FilmsList :resData="resultData" v-if="resultData"/>
     </div>
   </div>
 </template>
@@ -47,15 +43,19 @@ export default {
       return `https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.API_KEY}&language=${this.language}`
     },
     API_SEARCH() {
-      return `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&language=en-US&query=${this.filmToFind}&page=1&include_adult=false`
+      return `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&language=${this.language}&query=${this.filmToFind}&page=1&include_adult=false`
     }
   },
   methods: {
     searchQuery() {
-      axios
-          .get(this.API_SEARCH)
-          .then(result => this.resultData = result.data.results)
-          .catch(err => console.log(err))
+      if (this.filmToFind) {
+        axios
+            .get(this.API_SEARCH)
+            .then(result => this.resultData = result.data)
+            .catch(err => console.log(err))
+      } else {
+        alert('Musisz wprowadzić dane');
+      }
     }
   }
 }
@@ -73,7 +73,8 @@ export default {
   #app{
     max-width: 1280px;
     background-color: #ddd;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     margin: 0 auto;
   }
 
