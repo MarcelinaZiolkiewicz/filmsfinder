@@ -1,10 +1,13 @@
 <template>
-  <p>Single film icon</p>
+  <p>{{ film.original_title }}</p>
 </template>
 
 <script>
 export default {
-name: "SingleFilm.vue"
+  name: "SingleFilm.vue",
+  props: {
+  film: Object
+  }
 }
 </script>
 

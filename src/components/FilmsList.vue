@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Lista filmów</p>
+    <h3>Lista filmów</h3>
     <SingleFilm/>
   </div>
 </template>
@@ -15,5 +15,7 @@ name: "FilmsList.vue",
 </script>
 
 <style scoped>
-
+h3{
+  margin-top: 20px;
+}
 </style>

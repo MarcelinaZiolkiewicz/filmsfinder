@@ -2,16 +2,15 @@
   <div id="app">
     <div class="inputBox">
       <h2>Szukaj filmów</h2>
-      <input type="text" placeholder="Szukaj" v-model="valueToFind"/>
+      <form v-on:submit.prevent="searchQuery">
+        <input type="text" placeholder="Szukaj" v-model="filmToFind"/>
+      </form>
     </div>
     <div class="mostPopulars films">
       <h3>Znalezione</h3>
-      <p>{{test_string}}</p>
-      <p>KEY: {{API_KEY}}</p>
-      <p>{{API_DISCOVER_URL}}</p>
-      <p>{{API_GENRES}}</p>
+      <p><strong>API link:</strong> {{API_SEARCH}}</p>
 
-
+      <FilmsList :films="resultData"/>
 
     </div>
     <div class="finded films">
@@ -21,18 +20,23 @@
 </template>
 
 <script>
+import FilmsList from './components/FilmsList';
+import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
+    FilmsList
 
   },
   data() {
     return {
-      valueToFind: '',
-      API_KEY: 'xxx',
-      page: 34,
-      language: 'pl-PL'
+      resultData: null,
+      filmToFind: '',
+      movieId: null,
+      page: 1,
+      language: 'pl-PL',
+      API_KEY: 'xxx'
     }
   },
   computed: {
@@ -41,6 +45,20 @@ export default {
     },
     API_GENRES() {
       return `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.API_KEY}&language=${this.language}`
+    },
+    API_MOVIE() {
+      return `https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.API_KEY}&language=${this.language}`
+    },
+    API_SEARCH() {
+      return `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&language=en-US&query=${this.filmToFind}&page=1&include_adult=false`
+    }
+  },
+  methods: {
+    searchQuery() {
+      axios
+          .get(this.API_SEARCH)
+          .then(result => this.resultData = result)
+          .catch(err => console.log(err))
     }
   }
 }
