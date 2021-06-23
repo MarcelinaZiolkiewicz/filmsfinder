@@ -6,6 +6,13 @@
     </div>
     <div class="mostPopulars films">
       <h3>Znalezione</h3>
+      <p>{{test_string}}</p>
+      <p>KEY: {{API_KEY}}</p>
+      <p>{{API_DISCOVER_URL}}</p>
+      <p>{{API_GENRES}}</p>
+
+
+
     </div>
     <div class="finded films">
       <h3>Najpopularniejsze filmy</h3>
@@ -24,7 +31,16 @@ export default {
     return {
       valueToFind: '',
       API_KEY: 'xxx',
-      API_DISCOVER_URL: `https://api.themoviedb.org/3/discover/movie?api_key=${this.API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
+      page: 34,
+      language: 'pl-PL'
+    }
+  },
+  computed: {
+    API_DISCOVER_URL() {
+      return `https://api.themoviedb.org/3/discover/movie?api_key=${this.API_KEY}&language=${this.language}&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.page}&with_watch_monetization_types=flatrate`
+    },
+    API_GENRES() {
+      return `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.API_KEY}&language=${this.language}`
     }
   }
 }
