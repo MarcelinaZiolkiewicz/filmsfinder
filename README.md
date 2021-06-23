@@ -1,9 +1,9 @@
 # Films Finder
 
 ##Wymagania
-- wyszukiwanie dowolnego filmu
-- filmy pasujące do wyszukiwania widać na liście filmów
-- Filma na liście to - okładka, tytuł, popularność, liczba głosów
+- wyszukiwanie dowolnego filmu #
+- filmy pasujące do wyszukiwania widać na liście filmów #
+- Filma na liście to - okładka, tytuł, popularność, liczba głosów#
 - szczegóły wybranego filmu - gatunek, link IMDB, opis, kraj produkcji
 - sortowanie wg tytułu, oraz popularności
 

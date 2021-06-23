@@ -1,11 +1,20 @@
 <template>
   <div class="wrapper">
-    <img :src="getBackground" alt="">
-    <h3 class="title">{{film.title}}</h3>
-    <p>Popularność: <strong>{{film.popularity}}</strong></p>
-    <p>Liczba głosów: <strong>{{film.vote_count}}</strong></p>
+
+    <div class="imageBox">
+      <img :src="getBackground" alt="film poster">
+    </div>
+
+    <div class="titleBox">
+      <h3 class="title">{{film.title}}</h3>
+    </div>
+    <div class="infoBox">
+      <p>Popularność: {{film.popularity}}</p>
+      <p>Liczba głosów: {{film.vote_count}}</p>
+    </div>
   </div>
 </template>
+
 <script>
 import noImg from '../assets/noImage.png';
 
@@ -27,24 +36,36 @@ export default {
 </script>
 
 <style scoped>
-  .wrapper img{
-    width: 10vw;
-    background-position: center;
-    background-repeat: no-repeat;
-    -o-background-size: cover;
-    margin: 10px 10px;
+
+  .infoBox{
+    padding: 5px 10px;
+  }
+
+  .imageBox{
+    overflow: hidden;
+  }
+
+  .imageBox img{
+    width: 100%;
+    transition: transform .5s ease;
+  }
+
+  .imageBox:hover img{
+    transform: scale(1.1);
   }
 
   .wrapper{
-    width: 12vw;
-    display: inline-block;
-    text-align: center;
-    margin: 5px;
+    width: 13vw;
+    background-color: #b2bec3;
+    margin: 8px;
+    cursor: pointer;
   }
 
-  .title{
-    height: 24px;
-    overflow: hidden;
-    text-after-overflow: '...';
+  .titleBox{
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
   }
+
 </style>

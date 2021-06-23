@@ -6,7 +6,7 @@
         <input type="text" placeholder="Szukaj" v-model="filmToFind"/>
       </form>
     </div>
-    <div class="mostPopulars films">
+    <div class="films">
       <FilmsList :resData="resultData" v-if="resultData"/>
     </div>
   </div>
@@ -71,8 +71,8 @@ export default {
   }
 
   #app{
-    max-width: 1280px;
-    background-color: #ddd;
+    max-width: 1440px;
+    background-color: #dfe6e9;
     height: 100%;
     min-height: 100vh;
     margin: 0 auto;
@@ -82,10 +82,10 @@ export default {
     padding: 20px 30px;
   }
 
-.inputBox h2{
-  font-size: 28px;
-  font-weight: 400;
-}
+  .inputBox h2{
+    font-size: 28px;
+    font-weight: 400;
+  }
 
   .inputBox input{
     margin: 20px auto;
@@ -101,7 +101,7 @@ export default {
   }
 
   .films{
-    padding: 20px 30px;
+    padding-bottom: 30px;
   }
 
 </style>

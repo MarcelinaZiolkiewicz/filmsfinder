@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="wrapper">
     <h3>Znalezione filmy: {{resData.total_results}}</h3>
-    <SingleFilm v-for="item in resData.results" :key="item.id" :film="item"/>
+    <SingleFilm v-for="item in resData.results" :key="item.id" :film="item" class="filmsBox"/>
     <button class="loadMore" v-if="resData.total_results > 20" @click="getMoreData">Wczytaj więcej</button>
   </div>
 </template>
@@ -24,8 +24,16 @@ export default {
 </script>
 
 <style scoped>
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 h3{
   margin-top: 20px;
+  display: block;
+  width: 90%;
 }
 
 .loadMore{
