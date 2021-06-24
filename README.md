@@ -15,10 +15,10 @@
 - apka jest responsywna (do 320px na mobilkach)
 
 ##UWAGA NA
-- użyteczność interfejsu
-- paginacja
-- estetyczny wygląd
-- czysty kod
+- użyteczność interfejsu 
+- paginacja #
+- estetyczny wygląd 
+- czysty kod 
 
 ## Project setup
 ```
