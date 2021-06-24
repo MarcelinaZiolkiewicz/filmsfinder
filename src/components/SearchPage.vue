@@ -6,6 +6,12 @@
         <input type="text" placeholder="Szukaj filmu" v-model="filmToFind"/>
       </form>
     </div>
+
+    <div v-if="resultData" class="sortingButtons">
+      <button @click="sortByName">Sortuj po nazwie</button>
+      <button @click="sortByPopularity">Sortuj po popularności</button>
+    </div>
+
     <div class="films">
       <FilmsList :resData="resultData" v-if="resultData" @loadMore="getMoreData"/>
     </div>
@@ -19,7 +25,6 @@ import axios from 'axios';
 export default {
   components: {
     FilmsList
-
   },
   data() {
     return {
@@ -43,16 +48,27 @@ export default {
     },
     API_SEARCH() {
       return `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&language=${this.language}&query=${this.filmToFind}&page=${this.page}&include_adult=false`
+    },
+    films() {
+      return this.resultData.results
     }
   },
   methods: {
+    sortByName() {
+      this.films.sort((a,b) => a.title > b.title ? 1 : -1)
+    },
+    sortByPopularity() {
+      this.films.sort((a,b) => a.popularity < b.popularity ? 1 : -1)
+    },
     searchQuery() {
       this.page = 1;
 
       if (this.filmToFind) {
         axios
             .get(this.API_SEARCH)
-            .then(result => this.resultData = result.data)
+            .then(result => {
+              this.resultData = result.data;
+            })
             .catch(err => console.log(err))
       } else {
         alert('Musisz wprowadzić dane');
@@ -63,7 +79,9 @@ export default {
 
       axios
           .get(this.API_SEARCH)
-          .then(result => this.resultData.results = this.resultData.results.concat(result.data.results))
+          .then(result => {
+            this.resultData.results = this.resultData.results.concat(result.data.results);
+          })
           .catch(err => console.log(err))
     }
   }
@@ -80,31 +98,50 @@ export default {
     margin: 0 auto;
   }
 
-.inputBox{
-  padding: 20px 30px;
-}
+  .inputBox{
+    padding: 20px 30px;
+  }
 
-.inputBox h2{
-  font-size: 28px;
-  font-weight: 400;
-  text-align: center;
-}
+  .inputBox h2{
+    font-size: 28px;
+    font-weight: 400;
+    text-align: center;
+  }
 
-.inputBox input{
-  margin: 20px auto;
-  display: block;
-  max-width: 1100px;
-  border: none;
-  background-color: transparent;
-  border-bottom: 3px solid goldenrod;
-  font-size: 80px;
-  outline: none;
-  padding: 10px 20px;
-}
+  .inputBox input{
+    margin: 20px auto;
+    display: block;
+    max-width: 1100px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid goldenrod;
+    font-size: 80px;
+    outline: none;
+    padding: 10px 20px;
+  }
 
-.films{
-  padding-bottom: 30px;
-}
+  .films{
+    padding-bottom: 30px;
+  }
+
+  .sortingButtons{
+    text-align: left;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .sortingButtons button{
+    background-color: transparent;
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-left: 10px;
+    border: 2px solid black;
+    transition: .3s ease;
+  }
+
+  .sortingButtons button:hover{
+    background-color: black;
+    color: white;
+  }
 
   @media (max-width: 1200px) {
     .inputBox input{

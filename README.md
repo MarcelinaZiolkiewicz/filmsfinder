@@ -3,9 +3,9 @@
 ##Wymagania
 - wyszukiwanie dowolnego filmu #
 - filmy pasujące do wyszukiwania widać na liście filmów #
-- Filma na liście to - okładka, tytuł, popularność, liczba głosów#
+- Filma na liście to - okładka, tytuł, popularność, liczba głosów #
 - szczegóły wybranego filmu - gatunek, link IMDB, opis, kraj produkcji #
-- sortowanie wg tytułu, oraz popularności
+- sortowanie wg tytułu, oraz popularności #
 
 ## Must have
 
