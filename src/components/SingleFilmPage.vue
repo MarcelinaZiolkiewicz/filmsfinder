@@ -1,8 +1,14 @@
 <template>
   <div class="wrapper" v-if="resultData">
+
+    <div class="backButton" @click="$router.go(-1)">
+      <div class="arrowImage"></div>
+    </div>
+
     <div class="background">
       <img :src="getBackground" alt="">
     </div>
+
     <h1 class="title">{{resultData.title}} | {{releaseDate}} r.</h1>
     <div class="infoBox">
       <ul>
@@ -138,6 +144,29 @@ export default {
     font-size: 18px;
     line-height: 24px;
     letter-spacing: .5px;
+  }
+
+  .backButton{
+    height: 40px;
+    width: 40px;
+    background-color: #636e72;
+    opacity: 0.8;
+    position: fixed;
+    top: 2vw;
+    left: 2vw;
+    border-radius: 15px;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  .arrowImage{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background-image: url("../assets/arrow-left.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   @media (max-width: 450px) {
