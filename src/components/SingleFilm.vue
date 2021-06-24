@@ -28,11 +28,15 @@ export default {
         return `https://image.tmdb.org/t/p/original${this.film.poster_path}`
       }
       return noImg;
+    },
+    filmPath() {
+      return `/film/${this.film.id}`
     }
   },
   methods: {
     showMeId() {
-      console.log(this.film.id)
+      console.log(this.film.id);
+      this.$router.push(this.filmPath);
     }
   }
 }
