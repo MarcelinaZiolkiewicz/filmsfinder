@@ -7,7 +7,7 @@
       </form>
     </div>
     <div class="films">
-      <FilmsList :resData="resultData" v-if="resultData"/>
+      <FilmsList :resData="resultData" v-if="resultData" @loadMore="getMoreData"/>
     </div>
   </div>
 </template>
@@ -43,11 +43,13 @@ export default {
       return `https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.API_KEY}&language=${this.language}`
     },
     API_SEARCH() {
-      return `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&language=${this.language}&query=${this.filmToFind}&page=1&include_adult=false`
+      return `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&language=${this.language}&query=${this.filmToFind}&page=${this.page}&include_adult=false`
     }
   },
   methods: {
     searchQuery() {
+      this.page = 1;
+
       if (this.filmToFind) {
         axios
             .get(this.API_SEARCH)
@@ -56,6 +58,17 @@ export default {
       } else {
         alert('Musisz wprowadzić dane');
       }
+    },
+    getMoreData() {
+      this.page++;
+      console.log('Rozszerzam dane - page: ' + this.page);
+      console.log('Zapytanie ' + this.API_SEARCH);
+
+      axios
+          .get(this.API_SEARCH)
+          // .then(result => this.resultData.results.push(result.data.results)) // result to jest tablica i trzeba jej zawartość zpushować a nie całą tablice
+          .then(result => this.resultData.results = this.resultData.results.concat(result.data.results))
+          .catch(err => console.log(err))
     }
   }
 }
