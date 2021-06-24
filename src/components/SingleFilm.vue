@@ -11,6 +11,9 @@
       <p>Popularność: {{film.popularity}}</p>
       <p>Liczba głosów: {{film.vote_count}}</p>
     </div>
+    <button class="seeDetails">
+      Zobacz szczegóły >>
+    </button>
   </div>
 </template>
 
@@ -72,6 +75,16 @@ export default {
     font-size: 16px;
     width: 100%;
     text-align: center;
+  }
+
+  .seeDetails{
+    margin: 0 0 5px 0;
+    height: 35px;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
   }
 
   @media (max-width: 450px) {

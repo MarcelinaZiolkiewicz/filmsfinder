@@ -141,10 +141,15 @@ export default {
     max-width: 1100px;
     border: none;
     background-color: transparent;
-    border-bottom: 3px solid goldenrod;
+    border-bottom: 4px solid #636e72;
     font-size: 80px;
     outline: none;
     padding: 10px 20px;
+    color: #636e72;
+  }
+
+  .inputBox input:focus{
+    border-color: #1abc9c;
   }
 
   .films{

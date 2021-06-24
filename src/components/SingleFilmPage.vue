@@ -147,8 +147,8 @@ export default {
   }
 
   .backButton{
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     background-color: #636e72;
     opacity: 0.8;
     position: fixed;
@@ -157,11 +157,12 @@ export default {
     border-radius: 15px;
     cursor: pointer;
     z-index: 999;
+    border: 3px solid #b2bec3;
   }
 
   .arrowImage{
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     border-radius: 20px;
     background-image: url("../assets/arrow-left.svg");
     background-repeat: no-repeat;
@@ -178,6 +179,17 @@ export default {
 
     .infoBox ul li:last-of-type{
       border: none;
+    }
+
+    .backButton{
+      height: 50px;
+      width: 50px;
+      top: 6vw;
+      left: 6vw;
+    }
+    .arrowImage{
+      height: 50px;
+      width: 50px;
     }
   }
 
