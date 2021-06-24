@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <h3>Znalezione filmy: {{resData.total_results}}</h3>
-    <SingleFilm v-for="item in resData.results" :key="item.id" :film="item" class="filmsBox"/>
+    <h3>Znalezione filmy: {{totalResults}} | Wyświetlone: {{films.length}}</h3>
+    <SingleFilm v-for="item in films" :key="item.id" :film="item" class="filmsBox"/>
 
     <div class="buttonWrapper">
-      <button class="loadMore" v-if="resData.total_results > 20 && resData.results.length < resData.total_results" @click="getMoreData">Wczytaj więcej</button>
+      <button class="loadMore" v-if="totalResults > 20 && films.length < totalResults" @click="getMoreData">Wczytaj więcej</button>
     </div>
   </div>
 </template>
@@ -13,15 +13,21 @@
 import SingleFilm from './SingleFilm';
 
 export default {
-  name: "FilmsList.vue",
   components: {SingleFilm},
   props: {
-    resData: Array
+    resData: Object
   },
   methods: {
     getMoreData() {
       this.$emit('loadMore');
-      console.log('Wczytaj więcej danych');
+    }
+  },
+  computed: {
+    films() {
+      return this.resData.results
+    },
+    totalResults() {
+      return this.resData.total_results
     }
   }
 }

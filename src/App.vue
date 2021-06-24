@@ -17,7 +17,6 @@ import FilmsList from './components/FilmsList';
 import axios from 'axios';
 
 export default {
-  name: 'App',
   components: {
     FilmsList
 
@@ -61,12 +60,9 @@ export default {
     },
     getMoreData() {
       this.page++;
-      console.log('Rozszerzam dane - page: ' + this.page);
-      console.log('Zapytanie ' + this.API_SEARCH);
 
       axios
           .get(this.API_SEARCH)
-          // .then(result => this.resultData.results.push(result.data.results)) // result to jest tablica i trzeba jej zawartość zpushować a nie całą tablice
           .then(result => this.resultData.results = this.resultData.results.concat(result.data.results))
           .catch(err => console.log(err))
     }

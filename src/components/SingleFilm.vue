@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" @click="showMeId">
 
     <div class="imageBox">
       <img :src="getBackground" alt="film poster">
@@ -19,7 +19,6 @@
 import noImg from '../assets/noImage.png';
 
 export default {
-  name: "SingleFilm.vue",
   props: {
     film: Object
   },
@@ -29,6 +28,11 @@ export default {
         return `https://image.tmdb.org/t/p/original${this.film.poster_path}`
       }
       return noImg;
+    }
+  },
+  methods: {
+    showMeId() {
+      console.log(this.film.id)
     }
   }
 }
