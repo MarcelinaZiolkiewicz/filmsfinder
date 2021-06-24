@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="inputBox">
-      <h2>Szukaj filmów</h2>
+      <h2>Znajdź film w bazie ponad 662 588 filmów!</h2>
       <form v-on:submit.prevent="searchQuery">
-        <input type="text" placeholder="Szukaj" v-model="filmToFind"/>
+        <input type="text" placeholder="Szukaj filmu" v-model="filmToFind"/>
       </form>
     </div>
     <div class="films">

@@ -36,8 +36,8 @@ export default {
 <style scoped>
 .wrapper{
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-flow: row wrap;
 }
 
 h3{
@@ -65,4 +65,5 @@ h3{
   background-color: goldenrod;
   color: white;
 }
+
 </style>

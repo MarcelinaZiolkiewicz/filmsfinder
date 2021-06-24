@@ -63,7 +63,7 @@ export default {
   }
 
   .wrapper{
-    width: 13vw;
+    width: 200px;
     background-color: #b2bec3;
     margin: 8px;
     cursor: pointer;
@@ -74,6 +74,12 @@ export default {
     font-size: 16px;
     width: 100%;
     text-align: center;
+  }
+
+  @media (max-width: 450px) {
+    .wrapper{
+      width: 300px;
+    }
   }
 
 </style>
