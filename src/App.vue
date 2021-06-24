@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <router-view/>
+    <footer>
+      Strona wykonana na potrzeby rekrutacji @Michał Ziółkiewcz | 2021
+    </footer>
   </div>
 </template>
 
@@ -18,6 +21,11 @@ export default {
     margin: 0;
     padding: 0;
     font-family: "Montserrat", sans-serif;
+  }
+
+  footer{
+    text-align: center;
+    padding: 10px;
   }
 
 </style>
