@@ -87,12 +87,12 @@ export default {
 .inputBox h2{
   font-size: 28px;
   font-weight: 400;
+  text-align: center;
 }
 
 .inputBox input{
   margin: 20px auto;
   display: block;
-  width: 100%;
   max-width: 1100px;
   border: none;
   background-color: transparent;
@@ -105,5 +105,16 @@ export default {
 .films{
   padding-bottom: 30px;
 }
+
+  @media (max-width: 1200px) {
+    .inputBox input{
+      font-size: 30px;
+      width: 90%;
+    }
+
+    .inputBox h2{
+      display: none;
+    }
+  }
 
 </style>

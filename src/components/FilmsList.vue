@@ -1,25 +1,54 @@
 <template>
   <div class="wrapper">
-    <h3>Znalezione filmy: {{totalResults}} | Wyświetlone: {{films.length}}</h3>
+
+    <div class="amount">
+      <h3>Znalezione filmy: {{totalResults}}</h3>
+      <h3>Wyświetlone: {{films.length}}</h3>
+    </div>
     <SingleFilm v-for="item in films" :key="item.id" :film="item" class="filmsBox"/>
 
     <div class="buttonWrapper">
       <button class="loadMore" v-if="totalResults > 20 && films.length < totalResults" @click="getMoreData">Wczytaj więcej</button>
     </div>
+
+    <BackToTop v-if="showBackButton" @backToTop="backToTop"/>
   </div>
 </template>
 
 <script>
 import SingleFilm from './SingleFilm';
+import BackToTop from "@/components/BackToTop";
 
 export default {
-  components: {SingleFilm},
+  components: {BackToTop, SingleFilm},
+  created() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  data() {
+    return {
+      showBackButton: false,
+    }
+  },
   props: {
     resData: Object
   },
   methods: {
     getMoreData() {
       this.$emit('loadMore');
+    },
+    handleScroll() {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        this.showBackButton = true
+      }
+      else{
+        this.showBackButton = false
+      }
+    },
+    backToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   },
   computed: {
@@ -40,10 +69,14 @@ export default {
   flex-flow: row wrap;
 }
 
-h3{
-  margin-top: 20px;
-  display: block;
+.amount{
   width: 90%;
+  margin-top: 20px;
+}
+
+.amount h3{
+  margin-left: 20px;
+  display: inline;
 }
 
 .buttonWrapper{
@@ -66,4 +99,9 @@ h3{
   color: white;
 }
 
+@media (max-width: 460px) {
+  .amount h3{
+    display: block;
+  }
+}
 </style>
