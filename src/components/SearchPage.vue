@@ -54,6 +54,12 @@ export default {
     }
   },
   methods: {
+    saveToLocalStorage() {
+      let dataToSave = JSON.stringify(this.resultData);
+      localStorage.setItem('pageToLoad', this.page);
+      localStorage.setItem('query', this.filmToFind);
+      localStorage.setItem('loadedData', dataToSave);
+    },
     sortByName() {
       this.films.sort((a,b) => a.title > b.title ? 1 : -1)
     },
@@ -68,11 +74,14 @@ export default {
             .get(this.API_SEARCH)
             .then(result => {
               this.resultData = result.data;
+              localStorage.removeItem('loadedData');
+              this.saveToLocalStorage()
             })
             .catch(err => console.log(err))
       } else {
         alert('Musisz wprowadzić dane');
       }
+
     },
     getMoreData() {
       this.page++;
@@ -81,8 +90,26 @@ export default {
           .get(this.API_SEARCH)
           .then(result => {
             this.resultData.results = this.resultData.results.concat(result.data.results);
+            this.saveToLocalStorage()
           })
           .catch(err => console.log(err))
+    }
+  },
+  mounted() {
+
+    if (localStorage.getItem('loadedData') != null) {
+
+      this.page = localStorage.getItem('pageToLoad');
+      this.filmToFind = localStorage.getItem('query');
+
+      let data = localStorage.getItem('loadedData');
+      this.resultData = JSON.parse(data);
+
+    }
+
+    window.onbeforeunload = function () {
+      let storage = window.localStorage;
+      storage.clear()
     }
   }
 }

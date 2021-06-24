@@ -1,6 +1,5 @@
 <template>
-  <div class="wrapper" @click="showMeId">
-
+  <div class="wrapper" @click="goToPath">
     <div class="imageBox">
       <img :src="getBackground" alt="film poster">
     </div>
@@ -34,8 +33,7 @@ export default {
     }
   },
   methods: {
-    showMeId() {
-      console.log(this.film.id);
+    goToPath() {
       this.$router.push(this.filmPath);
     }
   }
