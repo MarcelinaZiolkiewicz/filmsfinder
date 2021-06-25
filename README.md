@@ -13,7 +13,7 @@ Do wykonania aplikacji wykorzystałem:
 - axios -  Biblioteka do prostszego wysyłania zapytń HTTP
 - vue-router - Biblioteka do zarządzania ścieżkami w pasku URL, umożliwiająca łatwe budowanie aplikacji SPA
 
-##Uruchomienie programu lokalnie
+## Uruchomienie programu lokalnie
 
   1. Wchodzimy na adres [Movies Finder - GitHub](https://github.com/MichalZiolkiewicz/filmsfinder)
   2. Klikamy przycisk z napisem 'Code', wybieramy typ linku (HTTPS/SSH/CLI)
